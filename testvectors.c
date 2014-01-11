@@ -15,6 +15,7 @@ void testVectorMalloc(CuTest* tc) {
   CuAssertDblEquals(tc, 0.0, v->x, DELTA);
   CuAssertDblEquals(tc, 0.0, v->y, DELTA);
   CuAssertDblEquals(tc, 0.0, v->z, DELTA);
+  vectorFree(v);
 }
 
 void testAssign(CuTest* tc) {
@@ -101,7 +102,7 @@ CuSuite* VectorsSuite(void) {
   return suite;
 }
 
-  
+
 
 
 

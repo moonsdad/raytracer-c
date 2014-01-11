@@ -3,7 +3,7 @@
 #include <math.h>    /* sqrt   */
 #include "vectors.h"
 /*
-A simple package to support vector 
+A simple package to support vector
 operations needed for a ray tracer.
 
 Geoffrey Matthews
@@ -79,8 +79,11 @@ void normalize(vector v) {
 double distance(vector p1, vector p2) {
 /* return the distance between points p1 and p2 */
   vector v = vectorMalloc();
+  double d;
   subtract(v, p1, p2);
-  return mag(v);
+  d = mag(v);
+  vectorFree(v);
+  return d;
 }
 
 void vectorPrint(vector v) {

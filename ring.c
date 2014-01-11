@@ -27,7 +27,7 @@ int main(int argc, char * argv[] ) {
   assign(theworld->eye, 0.0, 0.0, 150.0);
   assign(theworld->light, 1.0, 1.0, 1.0);
   normalize(theworld->light);
-  
+
   // make ring:
   radius1 = 500.0;
   radius2 = 100.0;
@@ -62,10 +62,10 @@ int main(int argc, char * argv[] ) {
       pct = pct - 5.0;
       r =  1.0; g = 0.0; b = 1.0-pct;
     }
-    
+
     mySphere = makeSphere(x, c*y-s*z, s*y+c*z - 2000.0,
-			  60.0,
-			  r, g, b);
+                          60.0,
+                          r, g, b);
     addSphere(theworld, mySphere);
   }
 

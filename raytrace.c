@@ -132,6 +132,7 @@ void tracer(const char* filename, /* file to write image into */
     y -= inc;
   }
   fclose(file);
+  vectorFree(color);
 }
 
 void colorAt(double x, double y,
@@ -143,6 +144,7 @@ void colorAt(double x, double y,
   myray->position = theworld->eye;
   subtract(myray->direction, pos, theworld->eye);
   sendRay(myray, theworld, color);
+  vectorFree(pos);
 }
 
 void sendRay(ray myray,    /* in */
@@ -158,6 +160,8 @@ void sendRay(ray myray,    /* in */
   } else {
     copy(color, theworld->backgroundColor);
   }
+  vectorFree(pos);
+  sphereFree(mysphere);
 }
 
 void lambert(sphere mysphere, /* in */
@@ -174,6 +178,7 @@ void lambert(sphere mysphere, /* in */
   }
   copy(color, mysphere->color);
   multiply(color, value);
+  vectorFree(norm);
 }
 
 void firstHit(ray myray,      /* in */
@@ -192,7 +197,7 @@ void firstHit(ray myray,      /* in */
   for (i = theworld->length-1; i >=0; i--) {
     intersect(theworld->objects[i], myray, &tmpSuccess, tmpPos);
     if (tmpSuccess) {
-      tmpDist = distance(theworld->eye, tmpPos);      
+      tmpDist = distance(theworld->eye, tmpPos);
       if (tmpDist < dist) {
 	*success = 1;
 	dist = tmpDist;
@@ -201,6 +206,7 @@ void firstHit(ray myray,      /* in */
       }
     }
   }
+  vectorFree(tmpPos);
 }
 
 void intersect(sphere mysphere, /* in */
@@ -234,5 +240,6 @@ void intersect(sphere mysphere, /* in */
   } else {
     *success = 0;
   }
+  vectorFree(p);
 }
 
